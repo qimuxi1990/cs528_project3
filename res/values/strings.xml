@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CounterActivity</string>
+    <string name="segmentLabel1">Segment 1 Steps: </string>
+    <string name="segmentLabel2">Segment 2 Steps: </string>
+    <string name="segmentLabel3">Segment 3 Steps: </string>
+    <string name="segmentLabel4">Segment 4 Steps: </string>
+    <string name="segmentLabel5">Segment 5 Steps: </string>
+    <string name="segmentLabel6">Segment 6 Steps: </string>
+    <string name="segmentLabel7">Segment 7 Steps: </string>
+    <string name="segmentLabel8">Segment 8 Steps: </string>
+    <string name="totalLabel">Total Steps: </string>
 </resources>
