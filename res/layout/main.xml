@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-              android:orientation="vertical"
-    android:stretchColumns="1">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
 
-    <TableRow
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="1dip"
-        android:layout_weight="50">
+        android:layout_weight="50"
+        android:orientation="horizontal">
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapview"
@@ -18,69 +19,70 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_span="2" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_margin="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel1"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
 
         <TextView
             android:id="@+id/stepCount1"
+            android:text="100"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
-    </TableRow>
+            android:textSize="20sp"
+            />
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_margin="10dip"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel2"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
 
         <TextView
             android:id="@+id/stepCount2"
+            android:text= ""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
-    </TableRow>
+            android:textSize="20sp"
+            />
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel3"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -89,23 +91,20 @@
             android:id="@+id/stepCount3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation= "horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel4"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -114,23 +113,20 @@
             android:id="@+id/stepCount4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel5"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -139,23 +135,20 @@
             android:id="@+id/stepCount5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel6"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -164,23 +157,20 @@
             android:id="@+id/stepCount6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation= "horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel7"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -189,23 +179,20 @@
             android:id="@+id/stepCount7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="end"
             android:text="@string/segmentLabel8"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -214,14 +201,12 @@
             android:id="@+id/stepCount8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="start"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </TableRow>
+    </LinearLayout>
 
     <TableRow
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
         android:layout_weight="1">
@@ -245,5 +230,5 @@
             android:textSize="20sp" />
     </TableRow>
 
-</TableLayout>
+</LinearLayout>
 
