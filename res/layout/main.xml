@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -13,12 +12,12 @@
         android:layout_weight="50"
         android:orientation="horizontal">
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mapview"
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_span="2" />
+            android:layout_gravity="center" />
     </LinearLayout>
 
 
@@ -27,25 +26,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="0dip"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/segmentLabel1"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/stepCount1"
-            android:text="100"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="100"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,17 +56,15 @@
             android:layout_height="wrap_content"
             android:text="@string/segmentLabel2"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/stepCount2"
-            android:text= ""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text=""
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -100,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
         android:layout_weight="1"
-        android:orientation= "horizontal">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -166,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="1dip"
         android:layout_weight="1"
-        android:orientation= "horizontal">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
