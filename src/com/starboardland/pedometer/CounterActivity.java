@@ -7,24 +7,23 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 import java.util.TimerTask;
-import android.os.Handler;
 
-public class CounterActivity extends Activity implements SensorEventListener {
+public class CounterActivity extends Activity implements SensorEventListener, OnMapReadyCallback {
 
     private boolean activityRunning;
-    private MapView map;
+    private MapFragment map;
     private SensorManager sensorManager;
     private TextView count;
 
@@ -45,8 +44,9 @@ public class CounterActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.main);
 
         activityRunning = true;// start running the sensor detector
-        map = (MapView) findViewById(R.id.mapview);
-        map.onCreate(savedInstanceState);
+        map = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        map.getMapAsync(this);
 
         // register for sum/total segment view
         count = (TextView) findViewById(R.id.stepCount);
@@ -135,7 +135,6 @@ public class CounterActivity extends Activity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        map.onResume();
         activityRunning = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null) {
@@ -149,7 +148,6 @@ public class CounterActivity extends Activity implements SensorEventListener {
     @Override
     protected void onPause() {
         super.onPause();
-        map.onPause();
         activityRunning = false;
         // if you unregister the last listener, the hardware will stop detecting step events
 //        sensorManager.unregisterListener(this); 
@@ -204,6 +202,16 @@ public class CounterActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        // TODO get location
+        // LatLng sydney = new LatLng(-33.867, 151.206);
+        googleMap.setMyLocationEnabled(true);
+        // TODO set location
+        // map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+
     }
 
     private class DBAccessTask extends TimerTask {
