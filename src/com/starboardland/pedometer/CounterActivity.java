@@ -6,31 +6,41 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.TimerTask;
 
-public class CounterActivity extends Activity implements SensorEventListener, OnMapReadyCallback {
+public class CounterActivity extends Activity implements SensorEventListener, OnMapReadyCallback
+,LocationListener, LocationSource{
 
+    private static final String TAG = "deactivate_tag"
+            ;
     private boolean activityRunning;
-    private MapFragment map;
+    private MapFragment mapFragment;
+    private GoogleMap map;
     private SensorManager sensorManager;
     private TextView count;
 
     private TextView count1, count2, count3, count4,
                 count5, count6, count7, count8;
-    private TextView totalCount;
-
+    //private TextView totalCount;
     private int segmentCounter = 1;
     private int steps_this_segment;
     private int totalSteps = 0;
@@ -38,15 +48,48 @@ public class CounterActivity extends Activity implements SensorEventListener, On
     private Handler mHandler = new Handler();
     private Runnable timeTask;
 
+    // fields to track location changes and updates
+    private OnLocationChangedListener mListener;
+    private LocationManager locationManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         activityRunning = true;// start running the sensor detector
-        map = (MapFragment) getFragmentManager()
+
+        // register for the locationManager to make use of the GPS service
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (locationManager != null) {
+            boolean gpsIsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            boolean networkIsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if(gpsIsEnabled)
+            {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000L, 10F, this);
+            }
+            else if(networkIsEnabled)
+            {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000L, 10F, this);
+            }
+            else
+            {
+                //Show an error dialog that GPS is disabled...
+            }
+        }
+        else
+        {
+            //Show some generic error dialog because something must have gone wrong with location manager.
+        }
+
+        // register mapFragment and set up the map
+        mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
-        map.getMapAsync(this);
+        map = mapFragment.getMap();
+        if (map != null)
+            map.setMyLocationEnabled(true);
+        map.setLocationSource(this);
+       // map.getMapAsync(this);
 
         // register for sum/total segment view
         count = (TextView) findViewById(R.id.stepCount);
@@ -214,13 +257,39 @@ public class CounterActivity extends Activity implements SensorEventListener, On
 
     }
 
-    private class DBAccessTask extends TimerTask {
-        @Override
-        public void run() {
-            Log.v("DBAccessTask", "I am the Database_Access_Task!");
-            // once started, access and store values to the the database
-           Log.v("newModel to code", "read and write");
-            // and then write values back
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (mListener != null){
+            mListener.onLocationChanged(location);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(location.getLatitude(), location.getLongitude()), 15);
+            map.animateCamera(cameraUpdate);
         }
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+       // Toast.makeText(this, "status changed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+       // Toast.makeText(this, "provider enabled", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.v(TAG, "something is disabled!");
+    }
+
+    @Override
+    public void activate(OnLocationChangedListener onLocationChangedListener) {
+        mListener  =  onLocationChangedListener;
+    }
+
+    @Override
+    public void deactivate() {
+        Log.v(TAG, "location service is deactivated!");
     }
 }
