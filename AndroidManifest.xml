@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.starboardland.pedometer"
+      package="com.project3.step_counter"
       android:versionCode="1"
       android:versionName="1.0">
 
@@ -24,7 +24,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA8gSUxC4mYuvbuEqdJV68GsgKQGDZMcUY" />
+            android:value="AIzaSyACA0msJ9yym4Mwnxm1wB10vvnm2T0Oklo" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
